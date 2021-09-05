@@ -1,0 +1,43 @@
+[System]
+Name='heater1'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='e'
+Range=[-10 10]
+NumMFs=3
+MF1='neg':'zmf',[-5 -1]
+MF2='pos':'smf',[1 5]
+MF3='zero':'trimf',[-2 0 2]
+
+[Input2]
+Name='edot'
+Range=[-10 10]
+NumMFs=2
+MF1='neg':'zmf',[-5 1]
+MF2='pos':'smf',[-1 5]
+
+[Output1]
+Name='heater'
+Range=[0 5]
+NumMFs=3
+MF1='low':'zmf',[0.8 1.875]
+MF2='medium':'trimf',[1.5 2.5 3.5]
+MF3='high':'smf',[3.125 4.2]
+
+[Rules]
+2 2, 3 (1) : 1
+2 1, 2 (1) : 1
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+3 2, 2 (1) : 1
+3 1, 1 (1) : 1
